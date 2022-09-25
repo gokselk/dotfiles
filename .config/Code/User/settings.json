@@ -1,0 +1,14 @@
+{
+  "telemetry.telemetryLevel": "off",
+  "editor.inlineSuggest.enabled": true,
+  "editor.guides.bracketPairs": true,
+  "workbench.colorTheme": "One Monokai",
+  "window.titleBarStyle": "custom",
+  "window.dialogStyle": "custom",
+  "Lua.runtime.version": "LuaJIT",
+  "Lua.telemetry.enable": false,
+  "C_Cpp.intelliSenseEngine": "Disabled",
+  "[lua]": {
+    "editor.defaultFormatter": "JohnnyMorganz.stylua"
+  },
+}
