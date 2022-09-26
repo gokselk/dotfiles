@@ -1,6 +1,7 @@
 nvidia-dkms
 nvidia-prime
 nvidia-settings
-lib32-nvidia-utils
 cuda
 opencl-nvidia
+lib32-nvidia-utils
+lib32-opencl-nvidia
