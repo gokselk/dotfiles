@@ -1,0 +1,13 @@
+bash-language-server
+clang
+deno
+gopls
+haskell-language-server
+lua-language-server
+pyright
+rust-analyzer
+texlab
+vscode-css-languageserver
+vscode-html-languageserver
+vscode-json-languageserver
+yaml-language-server
