@@ -18,20 +18,28 @@ source "$HOME/.local/share/zinit/zinit.git/zinit.zsh"
 autoload -Uz _zinit
 (( ${+_comps} )) && _comps[zinit]=_zinit
 
+### End of Zinit's installer chunk
+
 zinit ice depth=1
 zinit light romkatv/powerlevel10k
 
 zinit light-mode for \
-    OMZ::lib/clipboard.zsh \
-    OMZ::lib/directories.zsh \
-    OMZ::lib/functions.zsh \
-    OMZ::lib/git.zsh \
-    OMZ::lib/grep.zsh \
-    OMZ::lib/history.zsh \
-    OMZ::lib/key-bindings.zsh \
-    OMZ::lib/misc.zsh \
-    OMZ::lib/termsupport.zsh \
-    OMZ::lib/theme-and-appearance.zsh
+    OMZL::clipboard.zsh \
+    OMZL::directories.zsh \
+    OMZL::functions.zsh \
+    OMZL::git.zsh \
+    OMZL::grep.zsh \
+    OMZL::history.zsh \
+    OMZL::key-bindings.zsh \
+    OMZL::misc.zsh \
+    OMZL::termsupport.zsh \
+    OMZL::theme-and-appearance.zsh \
+    OMZP::command-not-found \
+    OMZP::colored-man-pages \
+    OMZP::git \
+    OMZP::fancy-ctrl-z \
+    OMZP::web-search \
+    rupa/z
 
 zinit wait lucid light-mode for \
     atinit"zicompinit; zicdreplay" \
@@ -40,9 +48,12 @@ zinit wait lucid light-mode for \
         zsh-users/zsh-autosuggestions \
     blockf atpull'zinit creinstall -q .' \
         zsh-users/zsh-completions \
-    OMZ::lib/completion.zsh
-
-### End of Zinit's installer chunk
+    OMZL::completion.zsh
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+# If terminal is WezTerm, set an alias for imgcat
+if [[ $TERM_PROGRAM == "WezTerm" ]]; then
+  alias imgcat="wezterm imgcat"
+fi
