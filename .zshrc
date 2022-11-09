@@ -1,10 +1,3 @@
-# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
-# Initialization code that may require console input (password prompts, [y/n]
-# confirmations, etc.) must go above this block; everything else may go below.
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
-
 ### Added by Zinit's installer
 if [[ ! -f $HOME/.local/share/zinit/zinit.git/zinit.zsh ]]; then
     print -P "%F{33} %F{220}Installing %F{33}ZDHARMA-CONTINUUM%F{220} Initiative Plugin Manager (%F{33}zdharma-continuum/zinit%F{220})…%f"
@@ -20,8 +13,8 @@ autoload -Uz _zinit
 
 ### End of Zinit's installer chunk
 
-zinit ice depth=1
-zinit light romkatv/powerlevel10k
+zinit ice from"gh-r" as"command" atload'eval "$(starship init zsh)"'
+zinit load starship/starship
 
 zinit light-mode for \
     OMZL::clipboard.zsh \
@@ -50,10 +43,20 @@ zinit wait lucid light-mode for \
         zsh-users/zsh-completions \
     OMZL::completion.zsh
 
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-
 # If terminal is WezTerm, set an alias for imgcat
 if [[ $TERM_PROGRAM == "WezTerm" ]]; then
   alias imgcat="wezterm imgcat"
+fi
+
+# If pacman exists, provide an update function
+if [[ -f /usr/bin/pacman ]]; then
+  function archup() {
+    # Take sudo, if failed, exit
+    sudo -v || return 1
+    sudo reflector --protocol https --latest 20 --sort rate --save /etc/pacman.d/mirrorlist
+    sudo pacman -Syy
+    sudo pacman -S --needed archlinux-keyring
+    pacman -Qqn | grep "\-keyring$" | sudo pacman -S --needed -
+    sudo pacman -Su
+  }
 fi
