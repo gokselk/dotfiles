@@ -13,8 +13,8 @@ autoload -Uz _zinit
 
 ### End of Zinit's installer chunk
 
-zinit ice from"gh-r" as"command" atload'eval "$(starship init zsh)"'
-zinit load starship/starship
+zinit ice compile'(pure|async).zsh' pick'async.zsh' src'pure.zsh'
+zinit light sindresorhus/pure
 
 zinit light-mode for \
     OMZL::clipboard.zsh \
