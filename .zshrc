@@ -43,9 +43,6 @@ zinit wait lucid light-mode for \
         zsh-users/zsh-completions \
     OMZL::completion.zsh
 
-alias q="exit"
-alias :q="exit"
-alias batt="cat /sys/class/power_supply/BAT?/capacity"
 # If terminal is WezTerm, set an alias for imgcat
 if [[ $TERM_PROGRAM == "WezTerm" ]]; then
   alias imgcat="wezterm imgcat"
